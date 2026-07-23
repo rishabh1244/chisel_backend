@@ -9,6 +9,7 @@ From construction projects and maintenance work to infrastructure repairs, Chise
 
 ---
 <img width="4695" height="3309" alt="image" src="https://github.com/user-attachments/assets/ae12df91-5b63-4cec-8f70-0feaa4e0487e" />
+
 ## What is Chisel?
 
 In traditional construction workflows, project updates are often scattered across spreadsheets, images, reports, and messaging platforms. This makes it difficult to maintain accountability, verify completed work, and understand how a project has evolved over time.
