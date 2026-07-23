@@ -10,6 +10,23 @@ interface CreateProjectParams {
   workers?: Types.ObjectId[]
   maintainers?: Types.ObjectId[]
 }
+/*
+  
+  curl -X GET http://localhost:3000/api/projects/all \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjU1MjY2MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciIsImlhdCI6MTc4NDc3OTY5NywiZXhwIjoxNzg1Mzg0NDk3fQ.tv03NPMiXFW-uP2ePclv-o8COg9MtvDDtyE-H1dXi1I"
+  
+  
+  curl -X GET http://localhost:3000/api/projects/involved \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjU1MjY2MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciIsImlhdCI6MTc4NDc3OTY5NywiZXhwIjoxNzg1Mzg0NDk3fQ.tv03NPMiXFW-uP2ePclv-o8COg9MtvDDtyE-H1dXi1I"
+  
+  curl -X GET http://localhost:3000/api/projects/created \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjU1MjY2MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciIsImlhdCI6MTc4NDc3OTY5NywiZXhwIjoxNzg1Mzg0NDk3fQ.tv03NPMiXFW-uP2ePclv-o8COg9MtvDDtyE-H1dXi1I"
+  
+
+
+
+*/
+
 
 export async function createProject(params: CreateProjectParams) {
   const project = await Project.create({
