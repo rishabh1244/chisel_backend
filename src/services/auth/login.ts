@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import User from '../../../models/User'
+import User from '../../models/User'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_change_me'
 
@@ -16,10 +16,10 @@ export async function login(username: string, password: string) {
   }
 
   const token = jwt.sign(
-    { userid: user.userid, username: user.username },
+    { _id: user._id.toString(), username: user.username },
     JWT_SECRET,
     { expiresIn: '7d' }
   )
 
-  return { token, user: { userid: user.userid, username: user.username } }
+  return { token, user: { _id: user._id.toString(), username: user.username } }
 }

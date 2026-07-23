@@ -10,7 +10,6 @@ export interface IProject extends Document {
   status: string
   created_at: Date
 }
-
 const ProjectSchema = new Schema<IProject>({
   title: { type: String, required: true },
   description: { type: String, default: '' },
