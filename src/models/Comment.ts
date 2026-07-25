@@ -6,6 +6,7 @@ export interface IComment extends Document {
   content: string
   media_links: string[]
   created_at: Date
+  updated_at: Date
 }
 
 const CommentSchema = new Schema<IComment>({
@@ -14,6 +15,7 @@ const CommentSchema = new Schema<IComment>({
   content: { type: String, required: true },
   media_links: [{ type: String }],
   created_at: { type: Date, default: Date.now },
+  updated_at: { type: Date, default: Date.now },
 })
 
 export default mongoose.model<IComment>('Comment', CommentSchema)
