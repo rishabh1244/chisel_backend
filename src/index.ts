@@ -8,6 +8,7 @@ import usersRoutes from './api_gateway/users'
 import fetchProblemsRoutes from './api_gateway/fetch_projects'
 import issueRoutes from './api_gateway/issueRoute'
 import commentRoutes from './api_gateway/commentRoute'
+import blueprintRoutes from './api_gateway/blueprintRoute'
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -22,6 +23,7 @@ app.use('/api/users', usersRoutes)
 app.use('/api/projects', fetchProblemsRoutes)
 app.use('/api/issues', issueRoutes)
 app.use('/api/comments', commentRoutes)
+app.use('/api/blueprint', blueprintRoutes)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
