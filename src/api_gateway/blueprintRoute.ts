@@ -8,14 +8,14 @@ router.use(authenticate)
 
 router.post('/convert', async (req: Request, res: Response) => {
   try {
-    const { description } = req.body
+    const { description, imageUrl } = req.body
 
     if (!description || typeof description !== 'string') {
       res.status(400).json({ error: 'Blueprint description (text) is required' })
       return
     }
 
-    const result = await blueprintToJson(description)
+    const result = await blueprintToJson(description, imageUrl)
 
     res.json(result)
   } catch (error) {

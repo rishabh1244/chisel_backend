@@ -12,13 +12,25 @@ const SYSTEM_PROMPT = `You are a blueprint-to-JSON converter. Given a text descr
 
 Use coordinates where 1 unit = 1 meter. Output ONLY valid JSON with no markdown formatting or code blocks.`
 
-export async function blueprintToJson(description: string): Promise<{ objects: Record<string, unknown>[] }> {
+export async function blueprintToJson(
+  description: string,
+  imageUrl?: string
+): Promise<{ objects: Record<string, unknown>[] }> {
   const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' })
 
-  const result = await model.generateContent([
+  const parts: any[] = [
     { text: SYSTEM_PROMPT },
-    { text: `Convert this building blueprint to JSON:\n\n${description}` },
-  ])
+  ]
+
+  if (imageUrl) {
+    parts.push({
+      fileData: { mimeType: 'image/png', fileUri: imageUrl },
+    })
+  }
+
+  parts.push({ text: `Convert this building blueprint to JSON:\n\n${description}` })
+
+  const result = await model.generateContent(parts)
 
   const text = result.response.text().trim()
 
