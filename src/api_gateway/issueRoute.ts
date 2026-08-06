@@ -3,11 +3,22 @@ import { authenticate } from '../middleware/auth'
 import { authorizeProject } from '../middleware/authorizeProject'
 import { createIssue } from '../services/issue_handler/createIssue'
 import { editIssue } from '../services/issue_handler/editIssue'
+import { getIssuesForProject } from '../services/issue_handler/getIssues'
 import { Types } from 'mongoose'
 
 const router = Router()
 
 router.use(authenticate)
+
+router.get('/project/:projectId', authorizeProject, async (req: Request, res: Response) => {
+  try {
+    const issues = await getIssuesForProject(new Types.ObjectId(req.params.projectId as string))
+    res.json(issues)
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Failed to fetch issues'
+    res.status(400).json({ error: message })
+  }
+})
 
 router.post('/createIssue', authorizeProject, async (req: Request, res: Response) => {
   try {
